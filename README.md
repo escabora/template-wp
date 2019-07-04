@@ -32,6 +32,6 @@ No arquivo function.php você irá encontrar funções auxilares como:
 - [Babel](https://babeljs.io/)
 
 ## Dependences
+- [Gulp](https://gulpjs.com/)
 - [Node js](https://nodejs.org/en/)
-- [Webpack](https://webpack.js.org/guides/installation/)
 
