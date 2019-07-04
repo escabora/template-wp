@@ -9,7 +9,8 @@ Template desenvolvido com o intuito de ajudar no desenvolvimento de um tema Word
     - Gera a pasta "dist" com os arquivos compilados
 
 ## Functions
-###No arquivo function.php você irá encontrar funções auxilares como:
+No arquivo function.php você irá encontrar funções auxilares como:
+
 - Suporte Thumbnails
 - Suporte Qualidade de imagens
 - Configura email para HTML
