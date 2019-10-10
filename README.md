@@ -1,6 +1,6 @@
 # Template para tema WordPress
 
-Template desenvolvido com o intuito de ajudar no desenvolvimento de um tema WordPress do zero. Atriu as funcionalidades mais utilizadas por blog e integrado com um task runner (Gulp) para ganhar velocidade e praticidade no desenvolvimento.
+Template desenvolvido com o intuito de ajudar no desenvolvimento de um tema WordPress do zero. Atribui as funcionalidades mais utilizadas por blog e integrado com um task runner (Gulp) para ganhar velocidade e praticidade no desenvolvimento.
 
 ## Run project 
 - Copie o repo
