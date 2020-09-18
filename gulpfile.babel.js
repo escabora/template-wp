@@ -22,4 +22,28 @@ Taskerify((mix) => {
         mix.browserify(`${SRC}/js/${storeName}-${file}.js`, `${DIST}/js`)
             .sass(`${SRC}/scss/${storeName}-${file}.scss`,  `${DIST}/css`);
     });
+
+    mix.browserSync({
+        open: 'external',
+        https: false,
+        ui: false,
+        port: 8000,
+        files: [
+            `${DIST}/css/*.css`,
+            `${DIST}/js/*.js`,
+        ],
+        proxy: `localhost/${storeName}`,
+        serveStatic: [
+            {
+                route: [
+                    `/wp-content/themes/telhanorte-wp/assets/dist/js`, 
+                    `/wp-content/themes/telhanorte-wp/assets/dist/css`
+                ],
+                dir: [
+                    './assets/dist/js',
+                    './assets/dist/css',
+                ],
+            },
+        ],
+    })
 });

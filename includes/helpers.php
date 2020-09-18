@@ -1,0 +1,5 @@
+<?php 
+
+// Silenc is Gold
+
+?>

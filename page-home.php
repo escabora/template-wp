@@ -8,11 +8,11 @@ get_header();
 
 <?php
 
-if ( have_posts() ) :
+if (have_posts()) :
 
-    while ( have_posts() ) : the_post(); ?>
+    while (have_posts()) : the_post(); ?>
 
-        <?php /* Recupera um Template */ get_template_part('templates/template','home'); ?>
+        <?php /* Recupera um Template */ get_template_part('templates/template', 'home'); ?>
 
     <?php endwhile; ?>
 

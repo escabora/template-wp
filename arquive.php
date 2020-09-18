@@ -1,63 +1,59 @@
-<?php 
-/*
+<?php
 
-    Template Name: Archives
-*/
-    
-get_header(); ?>
+get_header();
 
+?>
 
-  <div class="container-geral">
-      <div class="container">
-          <h1><?php single_cat_title(); ?></h1>
-          <?php
-          if(have_posts()): ?>
+<?php
 
-                  <?php while ( have_posts() ) : the_post(); ?>
+if (have_posts()) :
 
-                      <div class="colum-6">
+    while (have_posts()) : the_post();
 
-                          <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                              <a class="wrapper-imagem" href="<?php the_permalink(); ?>">
-                                  <?php if(has_post_thumbnail()): ?>
-                                      <?php the_post_thumbnail(); ?>
-                                  <?php else: ?>
-                                      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/post_sem_imagem.gif" class="sem-imagem" alt="<?php _e('Post sem imagem', 'Title Site') ?> - Description"/>
-                                  <?php endif; ?>
-                              </a>
-                              <div class="wrapper-cats-data">
-                                  <span class="cats"><?php the_category(', '); ?></span>
-                                  <span class="separador">/</span>
-                                  <span class="data"><?php echo get_the_date(); ?></span>
-                              </div>
-                              <a href="<?php the_permalink(); ?>">
-                                  <h2><?php the_title(); ?></h2>
-                              </a>
-                          </article>
+?>
 
-                      </div>
+        <div class="m-container">
+            <h1><?php single_cat_title(); ?></h1>
 
-                  <?php endwhile; ?>
+            <div class="m-container__contentPost">
+                <article class='m-cardPost m-cardPostId-<?php the_ID(); ?>'>
+                    <figure class='m-cardPost__figure'>
+                        <?php if (has_post_thumbnail()) : ?>
+                            <?php the_post_thumbnail(); ?>
+                        <?php else : ?>
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/post_sem_imagem.gif" class="sem-imagem" alt="<?php _e('Post sem imagem', 'Title Site') ?> - Description" />
+                        <?php endif; ?>
+                    </figure>
+                    <div class='m-cardPost__description'>
+                        <h1><?php the_title(); ?></h1>
+                        <div class="a-container__contentPost__data"><?php echo get_the_date(); ?></div>
+                        <div class="a-container__contentPost__categories"><?php the_category(', '); ?></div>
 
-              <?php
+                        <?php the_content(); ?>
+                        <a class='a-cardPost__btn' href="<?php the_permalink(); ?>">Ver Mais</a>
+                    </div>
+                </article>
+            </div>
+        </div>
 
-              the_posts_pagination( array(
-                  'mid_size' => 2,
-                  'prev_text' => '<span class="bolinha"><span>&lt;</span></span>'.__('Posts recentes', 'template-wp'),
-                  'next_text' => __('Posts antigos', 'template-wp').'<span class="bolinha"><span>&gt;</span></span>'
-              ) );
+    <?php endwhile; ?>
 
-              ?>
+    <section class="m-pagination">
+        <div class="m-paginationButtons">
+            <?php
+            /* example code for using the wp_pagenavi plugin */
+            if (function_exists('wp_pagenavi')) {
+                wp_pagenavi();
+            }
+            ?>
+        </div>
+    </section>
 
-          <?php else: ?>
+<?php else : ?>
 
-              <div class="conteudo"><?php _e('Não há posts para essa categoria!', 'template-wp'); ?></div>
-              <br/>
+    <h2>Nenhum conteúdo encontradob :(</h2>
+    <span>Que tal você digitar abaixo o que precisa e pesquisamos para você? (:</span>
 
-          <?php endif; ?>
-
-      </div>
-
-  </div>
+<?php endif; ?>
 
 <?php get_footer(); ?>
