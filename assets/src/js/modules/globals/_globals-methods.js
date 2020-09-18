@@ -1,4 +1,4 @@
-import El from './__cache-selectors';
+import El from './selectors';
 
 const Methods = {
 

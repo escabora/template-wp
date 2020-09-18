@@ -1,3 +1,23 @@
-.header {
+.m-footer {
     @extend %display-row;
+    background: $color-blue-footer;
+    @include rem(padding, $padding-components);
+}
+
+.m-main {
+    @extend %display-column;
+    background: $color-blue-ligth;
+    @include rem(padding, $padding-default);
+}
+
+.m-container {
+    @extend %container;
+    @extend %display-column;
+}
+
+.m-copyright {
+    & p {
+        @include rem(font-size, 14px);
+        @include font-weight('bold');
+    }
 }

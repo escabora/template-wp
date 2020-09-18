@@ -61,7 +61,17 @@
     ?>
 
     <header class="m-header">
-        <nav class="m-header__navMenu">
-            <a class="a-header__navMenu__Link" href="<?php echo site_url(); ?>" title="">Home</a>
-        </nav>
+        <div class='m-container'>
+            <div class='m-logo'>
+                <a class="a-logo__link" href="<?php echo site_url(); ?>" title="<?php get_bloginfo( 'name' ); ?>">
+                    <h3><?php echo get_bloginfo( 'name' ); ?></h3>
+                </a>
+            </div>
+            <nav class="m-header__navMenu">
+                <!-- <a class="a-header__navMenu__Link" href="<?php //echo site_url(); ?>" title="">Home</a> -->
+                <?php wp_nav_menu( array( 'menu_class' => 'm-header__navMenu__items' ) ); ?>
+            </nav>
+        </div>
     </header>
+    
+    <main class='m-main'>

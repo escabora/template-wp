@@ -15,15 +15,13 @@ if (have_posts()) :
         <div class="m-container">
             <div class="m-container__contentPost">
             <article class='m-contentPost m-contentPostId-<?php the_ID(); ?>'>
-                    <figure class='m-contentPost__figure'>
-                        <?php if (has_post_thumbnail()) : ?>
+                    <?php if (has_post_thumbnail()) : ?>
+                        <figure class='m-contentPost__figure'>
                             <?php the_post_thumbnail(); ?>
-                        <?php else : ?>
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/post_sem_imagem.gif" class="sem-imagem" alt="<?php _e('Post sem imagem', 'Title Site') ?> - Description" />
-                        <?php endif; ?>
-                    </figure>
+                        </figure>
+                    <?php endif; ?>
                 <h1><?php the_title(); ?></h1>
-                <div class="a-contentPost__data"><?php echo get_the_date(); ?></div>
+                <p class="a-contentPost__data"><?php echo get_the_date(); ?></p>
                 <?php the_content(); ?>
             </article>
             </div>

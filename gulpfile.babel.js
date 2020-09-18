@@ -11,6 +11,7 @@ const DIST         = Taskerify.config.distPath;
 
 const storeName    = 'template-wp';
 const commomFiles  = ['globals'];
+const specificFiles  = ['home', 'category', 'search'];
 
 Taskerify((mix) => {
 
@@ -19,6 +20,11 @@ Taskerify((mix) => {
 
     // Desktop Files
     commomFiles.map((file) => {
+        mix.browserify(`${SRC}/js/${storeName}-${file}.js`, `${DIST}/js`)
+            .sass(`${SRC}/scss/${storeName}-${file}.scss`,  `${DIST}/css`);
+    });
+
+    specificFiles.map((file) => {
         mix.browserify(`${SRC}/js/${storeName}-${file}.js`, `${DIST}/js`)
             .sass(`${SRC}/scss/${storeName}-${file}.scss`,  `${DIST}/css`);
     });

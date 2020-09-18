@@ -1,11 +1,5 @@
 <?php
 
-get_header();
-
-?>
-
-<?php
-
 if (have_posts()) :
 
     while (have_posts()) : the_post();
@@ -13,6 +7,8 @@ if (have_posts()) :
 ?>
 
         <div class="m-container">
+            <h1><?php single_cat_title(); ?></h1>
+
             <div class="m-container__contentPost">
                 <article class='m-cardPost m-cardPostId-<?php the_ID(); ?>'>
                     <figure class='m-cardPost__figure'>
@@ -51,5 +47,3 @@ if (have_posts()) :
     <span>Que tal você digitar abaixo o que precisa e pesquisamos para você? (:</span>
 
 <?php endif; ?>
-
-<?php get_footer(); ?>

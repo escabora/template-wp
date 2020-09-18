@@ -1,3 +1,4 @@
+</main>
 <footer class="m-footer">
 	<div class="m-footer__content">
 		<div class="m-container">
@@ -20,7 +21,10 @@
 		</div>
 	</div>
 </footer>
+
 <?php wp_footer(); ?>
+
+<?php get_template_part('templates/partials/template', 'loader'); ?>
 
 <?php
 $customBeforeCloseBody = get_field('geral_antes_fechar_body_html', 'option');
@@ -34,7 +38,6 @@ if ($customBeforeCloseBody) {
 	window.TEMPLATEWP = window.TEMPLATEWP || {};
 	TEMPLATEWP.adminAjax = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
 	TEMPLATEWP.security = "<?php echo wp_create_nonce("load_more_posts"); ?>";
-	TEMPLATEWP.page = 2;
 	TEMPLATEWP.pathname = window.location.pathname;
 
 	document.addEventListener('DOMContentLoaded', function() {

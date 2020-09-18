@@ -193,21 +193,34 @@ function tema_js_css_init()
 {
 
     // Scripts Javascript
+    wp_register_script('commonJs', get_template_directory_uri() . '/assets/dist/js/template-wp-globals.js', array('jquery'), '27.0', true);
+    wp_register_script('homeJs', get_template_directory_uri() . '/assets/dist/js/template-wp-home.js');
+    wp_register_script('categoryJs', get_template_directory_uri() . '/assets/dist/js/template-wp-category.js');
+    wp_register_script('searchJs', get_template_directory_uri() . '/assets/dist/js/template-wp-search.js');
+
+    //Vendors
     wp_register_script('jquery-js', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'); // jQuery UI
-    wp_register_script('tema-js', get_template_directory_uri() . '/assets/dist/js/template-wp-globals.js', array('jquery'), '27.0', true);
     wp_register_script('jquery-validate', 'https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js');
     wp_register_script('jquery-migrate', 'http://code.jquery.com/jquery-migrate-1.2.1.min.js');
-
-
     wp_register_script('slick-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js');
-    wp_register_script('mask', get_template_directory_uri() . '/assets/src/js/modules/filter/jquery.mask.min.js');
+    wp_register_script('mask', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js');
 
 
     wp_enqueue_script('jquery-migrate');
     wp_enqueue_script('slick-carousel');
     wp_enqueue_script('jquery-validate');
     wp_enqueue_script('mask');
-    wp_enqueue_script('tema-js');
+    wp_enqueue_script('commonJs');
+
+    if (is_home()) {
+        wp_enqueue_script('homeJs');
+    }
+    if (is_category() || is_archive()) {
+        wp_enqueue_script('categoryJs');
+    }
+    if (is_search()) {
+        wp_enqueue_script('searchJs');
+    }
 
 
     $adminAjaxUrl = admin_url('admin-ajax.php');
@@ -220,12 +233,23 @@ function tema_js_css_init()
     ));
 
     // Scripts CSS
-    wp_register_style('fancybox-css', 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css');
-    wp_register_style('commons-css', get_template_directory_uri() . '/assets/dist/css/template-wp-globals.css'); /* CSS principal */
+    wp_register_style('commonCss', get_template_directory_uri() . '/assets/dist/css/template-wp-globals.css'); 
+    wp_register_style('homeCss', get_template_directory_uri() . '/assets/dist/css/template-wp-home.css');
+    wp_register_style('categoryCss', get_template_directory_uri() . '/assets/dist/css/template-wp-category.css');
+    wp_register_style('searchCss', get_template_directory_uri() . '/assets/dist/css/template-wp-search.css');
 
 
-    wp_enqueue_style('fancybox-css');
-    wp_enqueue_style('commons-css');
+    wp_enqueue_style('commonCss');
+
+    if (is_home()) {
+        wp_enqueue_style('homeCss');
+    }
+    if (is_category() || is_archive()) {
+        wp_enqueue_style('categoryCss');
+    }
+    if (is_search()) {
+        wp_enqueue_style('searchCss');
+    }
 }
 
 add_action('init', 'add_consultor_rule');
@@ -281,8 +305,8 @@ function load_posts_by_ajax_callback()
                 </figure>
                 <div class='m-cardPost__description'>
                     <h1><?php the_title(); ?></h1>
-                    <div class="a-container__contentPost__data"><?php echo get_the_date(); ?></div>
-                    <div class="a-container__contentPost__categories"><?php the_category(', '); ?></div>
+                    <p class="a-container__contentPost__data"><?php echo get_the_date(); ?></p>
+                    <p class="a-container__contentPost__categories"><?php the_category(', '); ?></p>
 
                     <?php the_content(); ?>
                     <a class='a-cardPost__btn' href="<?php the_permalink(); ?>">Ver Mais</a>
@@ -331,8 +355,8 @@ function wpa56343_search()
             </figure>
             <div class='m-cardPost__description'>
                 <h1><?php the_title(); ?></h1>
-                <div class="a-container__contentPost__data"><?php echo get_the_date(); ?></div>
-                <div class="a-container__contentPost__categories"><?php the_category(', '); ?></div>
+                <p class="a-container__contentPost__data"><?php echo get_the_date(); ?></p>
+                <p class="a-container__contentPost__categories"><?php the_category(', '); ?></p>
 
                 <?php the_content(); ?>
                 <a class='a-cardPost__btn' href="<?php the_permalink(); ?>">Ver Mais</a>
