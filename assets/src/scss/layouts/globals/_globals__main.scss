@@ -13,6 +13,24 @@
 .m-container {
     @extend %container;
     @extend %display-column;
+
+    h1 { 
+        @include rem(font-size, 35px); 
+        @include reset-box-model;
+        color:  $color-default-text;
+        font-weight: (bold);
+        margin: $margin-title-default;
+    }
+}
+
+.a-contentPost {
+    &__btn {
+        @extend %btn-default;
+        @include rem(margin, 45px auto);
+    }
+    &__notPost {
+        @include rem(margin, 45px auto);
+    }
 }
 
 .m-copyright {

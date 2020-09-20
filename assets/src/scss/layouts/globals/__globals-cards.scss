@@ -1,0 +1,13 @@
+.m-cardPost {
+    background: $color-white;
+    @include rem(padding, 15px);
+    @include rem(border-radius, 5px);
+    @include rem(margin, 10px 20px 10px 0px);
+}
+
+.a-cardPost {
+    &__btn {
+        @extend %btn-default;
+    }
+    
+}

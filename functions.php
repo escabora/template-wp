@@ -252,43 +252,20 @@ function tema_js_css_init()
     }
 }
 
-add_action('init', 'add_consultor_rule');
-
-function add_consultor_rule()
-{
-    add_rewrite_tag('%corretor%', '([^&]+)');
-    add_rewrite_rule('^empreendimentos/([^&]+)/([^&]+)/([^&]+)/?', 'index.php?empreendimentos=$matches[1]&corretor=$matches[3]', 'top');
-    add_rewrite_rule('^bairros/([^&]+)/([^&]+)/([^&]+)/?', 'index.php?bairros=$matches[1]&corretor=$matches[3]', 'top');
-}
-
 function load_posts_by_ajax_callback()
 {
-
     global $post;
 
     check_ajax_referer('load_more_posts', 'security');
     $paged = $_POST['page'];
-    // $cat_id = $_POST[ 'cat' ];
     $cat_name = $_POST['category_name'];
-    $template_category = $_POST['template'];
-
-    // Chama posts por relevancia de visualização
-    $meta_key = $_POST['meta_key'];
-    $orderby_meta = $_POST['meta_value_num'];
-    $authorID = $_POST['author__in'];
-    $author = get_user_by('ID', $authorID);
-    if (!is_null($author))
-        $author_name = $author->user_nicename;
     $args = array(
-        'post_type' => 'empreendimentos',
+        'post_type' => 'post',
         'post_status' => 'publish',
         'posts_per_page' => '6',
+        'order' => 'DESC',
         'paged' => $paged,
-        // 'cat' => $cat_id,
         'category_name' => $cat_name,
-        'meta_key' => $meta_key,
-        // 'orderby' =>  $orderby_meta,
-        // 'author__in' => $authorID
     );
     $my_posts = new WP_Query($args);
     if ($my_posts->have_posts()) :
@@ -299,16 +276,14 @@ function load_posts_by_ajax_callback()
                 <figure class='m-cardPost__figure'>
                     <?php if (has_post_thumbnail()) : ?>
                         <?php the_post_thumbnail(); ?>
-                    <?php else : ?>
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/post_sem_imagem.gif" class="sem-imagem" alt="<?php _e('Post sem imagem', 'Title Site') ?> - Description" />
                     <?php endif; ?>
                 </figure>
-                <div class='m-cardPost__description'>
+                <div class='m-cardPost__infos'>
                     <h1><?php the_title(); ?></h1>
                     <p class="a-container__contentPost__data"><?php echo get_the_date(); ?></p>
                     <p class="a-container__contentPost__categories"><?php the_category(', '); ?></p>
 
-                    <?php the_content(); ?>
+                    <p class="a-container__contentPost__description"><?php echo tema_limite_caracteres(get_the_content(), 100); ?></p>
                     <a class='a-cardPost__btn' href="<?php the_permalink(); ?>">Ver Mais</a>
                 </div>
             </article>
@@ -353,12 +328,12 @@ function wpa56343_search()
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/post_sem_imagem.gif" class="sem-imagem" alt="<?php _e('Post sem imagem', 'Title Site') ?> - Description" />
                 <?php endif; ?>
             </figure>
-            <div class='m-cardPost__description'>
+            <div class='m-cardPost__infos'>
                 <h1><?php the_title(); ?></h1>
                 <p class="a-container__contentPost__data"><?php echo get_the_date(); ?></p>
                 <p class="a-container__contentPost__categories"><?php the_category(', '); ?></p>
 
-                <?php the_content(); ?>
+                <p class="a-container__contentPost__description"><?php echo tema_limite_caracteres(get_the_content(), 100); ?></p>
                 <a class='a-cardPost__btn' href="<?php the_permalink(); ?>">Ver Mais</a>
             </div>
         </article>

@@ -1,0 +1,11 @@
+%btn {
+    &-default {
+        background: #eef0f4;
+        @include rem(padding, 10px 20px);
+        display: inline-flex;
+        @include rem(margin, 10px 0px);
+        @include font-weight('bold');
+        text-transform: lowercase;
+        @include rem(border-radius, 5px);
+    }
+}
