@@ -3,6 +3,23 @@
     @include rem(padding, $padding-components);
     background: $color-white;
 
+    @include mq('sm','max') {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        transition: all .3s ease-in-out;
+
+        [data-scrolldir='up'] & {
+            transform: translate3d(0, 0, 0);
+            will-change: transform;
+        }
+    
+        [data-scrolldir='down'] & {
+            transform: translate3d(0, -100%, 0);
+        }
+    }
+
     & .m-container {
         @extend %display-row;
         justify-content: space-between;
@@ -12,17 +29,143 @@
         display: flex;
         width: 50%;
 
+        & div {
+            display: flex;
+            width: 100%;
+        }
+
         &__items {
             display: flex;
             width: 100%;
-            & ul {
-                display: flex;
-                justify-content: flex-end;
-                width: 100%;
+            justify-content: space-around;
 
-                & li {
-                    padding: 0 10px;
+            @include mq('sm', 'max') {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                background: $color-blue-ligth;
+                flex-direction: column;
+                justify-content: flex-start;
+                @include rem(padding, 40px 20px);
+                width: 80vw;
+                z-index: 5095;
+                transition: all .3s ease-in-out;
+                transform: translateX(-100%);
+
+            }
+
+
+            & li {
+                @include rem(padding, 0 10px);
+                position: relative;
+                @include mq('sm', 'max') {
+                    @include rem(margin-bottom, 10px);
                 }
+
+                
+
+                & .sub-menu {
+                    @include mq('sm', 'min') {
+                        position: absolute;
+                        opacity: 0;
+                        top: 30px;
+                        left: 0;
+                        justify-content: flex-start;
+                        @include rem(padding, 10px);
+                        
+                        width: 100%;
+                        background: $color-blue-ligth;
+                        border-radius: 4px;
+                    }
+                    @include mq('sm', 'max') {
+                        @include rem(padding, 10px);
+                    }
+                    
+                    
+
+                    & li {
+                        padding-left: 0px;
+                    }
+                }
+
+                &:hover {
+                    & .sub-menu { 
+                        @include mq('sm', 'min') {
+                            opacity: 1;
+                            z-index: 1;
+                        }
+                    }
+                }
+
+                & a {
+                    &:hover {
+                        @extend %hover-default;
+                    }
+                    
+                }
+            }
+        }
+    }
+
+    &.--isActiveMenu {
+        z-index: 5095;
+        & .m-container {
+
+            & .m-header__navMenu {
+                & div {
+                    & .m-header__navMenu__items {
+                        box-shadow: 18px -1px 20px 15px #fff;
+                        transform: translateX(0%);
+                    }
+                }
+            }
+
+            & .a-buttonOpenMenu__close {
+                transform: translateX(0%);
+            }
+           
+        }
+        
+    }
+}
+
+.m-searchFormMenu {
+    position: absolute;
+    width: 100%;
+    background: $color-blue-ligth;
+    border-bottom: $border-style;
+    @include rem(padding, 15px 40px);
+    left: 0;
+    top: 0;
+    transform: translateY(-100%);
+    transition: all .2s ease-in-out; 
+    z-index: 9;
+
+    &.--isActiveSearchForm {
+        transform: translateY(0%);
+    }
+
+    &__content {
+        @extend %display-row;
+        align-items: center;
+
+        & form {
+            width: 90%;
+            @include rem(margin-right, 20px);
+
+            & #s {
+                background: $color-white;
+                width: 100%;
+                @include rem(padding, 15px 10px);
+                @include rem(border-radius, 5px);
+            }
+        }
+        
+        & a {
+            & svg {
+                @include rem(width, 16px);
+                @include rem(height, 16px);
             }
         }
     }
@@ -31,4 +174,78 @@
 .m-logo {
     display: flex;
     width: 50%;
+
+    & a {
+        &:hover {
+            @extend %hover-default;
+        }
+        
+    }
+}
+
+.a-searchFormMenu {
+    &__btn {
+        @include rem(width, 16px);
+        @include rem(height, 16px);
+
+        &:hover {
+
+            & svg {
+                @extend %hover-default;
+            }
+            
+        }
+    }
+} 
+
+.a-buttonOpenMenu {
+    display: flex;
+    align-items: center;
+    @include rem(margin-left, 10px);
+
+    @include mq('sm', 'min') {
+        display: none;
+    }
+
+    & svg {
+        @include rem(width, 18px);
+        @include rem(height, 18px);
+    }
+
+    &:hover {
+
+        & svg {
+            @extend %hover-default;
+        }
+        
+    }
+
+    &__close {
+        @include rem(top, 20px);
+        @include rem(width, 40px);
+        @include rem(height, 40px);
+        position: absolute;
+        @include rem(right, 30px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        background: $color-blue-ligth;
+        @include rem(border-radius, 4px);
+        transform: translateX(200%); 
+        transition: all .3s ease-in-out;
+
+        & svg {
+            @include rem(width, 16px);
+            @include rem(height, 16px);
+        }
+    
+        &:hover {
+    
+            & svg {
+                @extend %hover-default;
+            }
+            
+        }
+    }
 }

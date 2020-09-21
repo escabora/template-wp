@@ -1,6 +1,6 @@
 .m-footer {
     @extend %display-row;
-    background: $color-blue-footer;
+    background: $color-blue-medium;
     @include rem(padding, $padding-components);
 }
 
@@ -8,6 +8,10 @@
     @extend %display-column;
     background: $color-blue-ligth;
     @include rem(padding, $padding-default);
+
+    @include mq('sm', 'max') {
+        @include rem(margin-top, 80px);
+    }
 }
 
 .m-container {

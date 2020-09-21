@@ -39,6 +39,7 @@ if ($customBeforeCloseBody) {
 	TEMPLATEWP.adminAjax = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
 	TEMPLATEWP.security = "<?php echo wp_create_nonce("load_more_posts"); ?>";
 	TEMPLATEWP.pathname = window.location.pathname;
+	TEMPLATEWP.body = document.querySelector('body');
 
 	document.addEventListener('DOMContentLoaded', function() {
 		setTimeout(() => {

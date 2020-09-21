@@ -73,7 +73,7 @@ $queryall = new WP_Query($args); ?>
 </div>
 
 <div class="m-container js--m-contentPost__notPost is--hide">
-    <span class='a-contentPost__notPost'>Os empreendimentos acabaram...</span>
+    <span class='a-contentPost__notPost'>As postagens acabaram...</span>
 </div>
 
 <?php else : ?>

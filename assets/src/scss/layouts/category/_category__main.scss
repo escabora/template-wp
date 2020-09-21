@@ -1,0 +1,14 @@
+.m-paginationButtons {
+    display: flex;
+    & .wp-pagenavi {
+        & a,
+        & span {
+            @extend %btn-default;
+            @include rem(margin-right, 5px);
+
+            &.current {
+                border: $border-style;
+            }
+        }
+    }
+}

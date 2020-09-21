@@ -215,7 +215,7 @@ function tema_js_css_init()
     if (is_home()) {
         wp_enqueue_script('homeJs');
     }
-    if (is_category() || is_archive()) {
+    if (is_page_template(array('category.php','archive.php'))) {
         wp_enqueue_script('categoryJs');
     }
     if (is_search()) {
@@ -244,7 +244,7 @@ function tema_js_css_init()
     if (is_home()) {
         wp_enqueue_style('homeCss');
     }
-    if (is_category() || is_archive()) {
+    if (is_page_template(array('category.php','archive.php'))) {
         wp_enqueue_style('categoryCss');
     }
     if (is_search()) {

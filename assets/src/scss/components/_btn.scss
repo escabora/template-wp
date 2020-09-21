@@ -1,11 +1,17 @@
 %btn {
     &-default {
-        background: #eef0f4;
+        background: $color-blue-medium;
         @include rem(padding, 10px 20px);
         display: inline-flex;
         @include rem(margin, 10px 0px);
         @include font-weight('bold');
         text-transform: lowercase;
         @include rem(border-radius, 5px);
+        border: $border-style;
+        border-color: #eef0f4;
+
+        &:hover {
+            border: $border-style;
+        }
     }
 }

@@ -3,6 +3,10 @@
         &.--gridContent {
             grid-template-columns: 1fr 1fr 1fr;
             display: grid;
+
+            @include mq('sm','max') {
+                grid-template-columns: 1fr;
+            }
         }
     }
 }

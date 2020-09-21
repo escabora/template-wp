@@ -36,5 +36,25 @@
         figure {
             margin: 0px;
         }
+
+        pre {
+            background: $color-white;
+            @include rem(border-radius, 5px);
+            @include rem(padding, 20px);
+            @include rem(margin-bottom, 20px);
+        }
+
+        input,
+        textarea,
+        select {
+            border: $border-style;
+            @include rem(padding, 5px 15px);
+            @include rem(border-radius, 4px);
+            @include rem(margin-bottom, 10px);
+        }
+
+        input[type="file"] {
+            border: 0px;
+        }
     }
 }

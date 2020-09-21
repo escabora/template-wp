@@ -1,9 +1,9 @@
 <?php
-
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args = array(
     'post_type' => 'post',
     'post_status' => 'publish',
-    'paged'          => 1,
+    'paged'          => $paged,
     'posts_per_page' => '6',
 );
 
@@ -35,7 +35,10 @@ $queryall = new WP_Query($args); ?>
                 </article>
 
 
-            <?php endwhile; ?>
+            <?php 
+                endwhile; 
+                wp_reset_query();
+            ?>
 
 
     </div>
@@ -46,7 +49,7 @@ $queryall = new WP_Query($args); ?>
             /* example code for using the wp_pagenavi plugin */
             if (function_exists('wp_pagenavi'))
 			{
-				wp_pagenavi();
+				wp_pagenavi(array( 'query' => $queryall));
 			}
         ?>
     </div>

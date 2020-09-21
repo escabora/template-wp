@@ -1,4 +1,3 @@
-export default {
-    // main: document.querySelector('.main'),
-    
+export const overlays = {
+    // overlay: jQuery('.js--m-overlay'),
 }

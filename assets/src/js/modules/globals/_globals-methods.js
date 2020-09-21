@@ -2,9 +2,20 @@ const Methods = {
 
     init() {
         TEMPLATEWP.ajaxPosts = Methods.ajaxPosts;
+        TEMPLATEWP.toggleOverlay = Methods.toggleOverlay;
 
         //set more Posts
         Methods.ajaxPostsPageInit();
+    },
+
+    toggleOverlay(cond) {
+        if(cond) { 
+            document.querySelector('.js--m-overlay').classList.add('is--active');
+            TEMPLATEWP.body.classList.add('no-scroll');
+        } else {
+            document.querySelector('.js--m-overlay').classList.remove('is--active');
+            TEMPLATEWP.body.classList.remove('no-scroll');
+        }
     },
 
     ajaxPostsPageInit() {
