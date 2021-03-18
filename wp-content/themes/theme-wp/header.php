@@ -26,7 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--<meta name="theme-color" content="#00427a">-->
-    <title><?php bloginfo(); ?><?php wp_title('|', true, 'left'); ?></title>
+    <title><?php wp_title('|', true, 'left'); ?> </title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 

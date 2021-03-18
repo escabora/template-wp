@@ -29,9 +29,18 @@
         display: flex;
         width: 50%;
 
+        @include mq('sm', 'max') {
+            justify-content: flex-end;
+        }
+
         & div {
             display: flex;
             width: 100%;
+        }
+
+        & ul {
+            display: flex;
+            
         }
 
         &__items {
@@ -39,72 +48,76 @@
             width: 100%;
             justify-content: space-around;
 
-            @include mq('sm', 'max') {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100vh;
-                background: $color-blue-ligth;
-                flex-direction: column;
-                justify-content: flex-start;
-                @include rem(padding, 40px 20px);
-                width: 80vw;
-                z-index: 5095;
-                transition: all .3s ease-in-out;
-                transform: translateX(-100%);
-
-            }
-
-
-            & li {
-                @include rem(padding, 0 10px);
-                position: relative;
+            ul {
                 @include mq('sm', 'max') {
-                    @include rem(margin-bottom, 10px);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100vh;
+                    background: $color-blue-ligth;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    @include rem(padding, 40px 20px);
+                    width: 80vw;
+                    z-index: 5095;
+                    transition: all .3s ease-in-out;
+                    transform: translateX(-100%);
+    
                 }
 
-                
-
-                & .sub-menu {
-                    @include mq('sm', 'min') {
-                        position: absolute;
-                        opacity: 0;
-                        top: 30px;
-                        left: 0;
-                        justify-content: flex-start;
-                        @include rem(padding, 10px);
-                        
-                        width: 100%;
-                        background: $color-blue-ligth;
-                        border-radius: 4px;
-                    }
+                & li {
+                    @include rem(padding, 0 10px);
+                    position: relative;
                     @include mq('sm', 'max') {
-                        @include rem(padding, 10px);
+                        @include rem(margin-bottom, 10px);
                     }
+    
                     
-                    
-
-                    & li {
-                        padding-left: 0px;
-                    }
-                }
-
-                &:hover {
-                    & .sub-menu { 
+    
+                    & .sub-menu {
                         @include mq('sm', 'min') {
-                            opacity: 1;
-                            z-index: 1;
+                            position: absolute;
+                            opacity: 0;
+                            top: 30px;
+                            left: 0;
+                            justify-content: flex-start;
+                            @include rem(padding, 10px);
+                            
+                            width: 100%;
+                            background: $color-blue-ligth;
+                            border-radius: 4px;
+                        }
+                        @include mq('sm', 'max') {
+                            @include rem(padding, 10px);
+                        }
+                        
+                        
+    
+                        & li {
+                            padding-left: 0px;
                         }
                     }
-                }
-
-                & a {
+    
                     &:hover {
-                        @extend %hover-default;
+                        & .sub-menu { 
+                            @include mq('sm', 'min') {
+                                opacity: 1;
+                                z-index: 1;
+                            }
+                        }
                     }
-                    
+    
+                    & a {
+                        &:hover {
+                            @extend %hover-default;
+                        }
+                        
+                    }
                 }
             }
+
+
+            
         }
     }
 
@@ -113,12 +126,15 @@
         & .m-container {
 
             & .m-header__navMenu {
-                & div {
+                
                     & .m-header__navMenu__items {
-                        box-shadow: 18px -1px 20px 15px #fff;
-                        transform: translateX(0%);
+                        & ul {
+                            box-shadow: 18px -1px 20px 15px #fff;
+                            transform: translateX(0%);
+                        }
+                        
                     }
-                }
+                
             }
 
             & .a-buttonOpenMenu__close {

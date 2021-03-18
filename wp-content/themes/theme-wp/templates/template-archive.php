@@ -1,20 +1,9 @@
-<?php
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-$args = array(
-    'post_type' => 'post',
-    'post_status' => 'publish',
-    'paged'          => $paged,
-    'posts_per_page' => '6',
-);
-
-$queryall = new WP_Query($args); ?>
-
 <div class="m-container">
     <h1><?php the_title(); ?></h1>
     
     <div class="m-container__contentPost --gridContent">
-        <?php if ($queryall->have_posts()) :
-            while ($queryall->have_posts()) : $queryall->the_post();
+        <?php if (have_posts()) :
+            while (have_posts()) : the_post();
         ?>
 
 
@@ -37,7 +26,6 @@ $queryall = new WP_Query($args); ?>
 
             <?php 
                 endwhile; 
-                wp_reset_query();
             ?>
 
 
@@ -49,7 +37,7 @@ $queryall = new WP_Query($args); ?>
             /* example code for using the wp_pagenavi plugin */
             if (function_exists('wp_pagenavi'))
 			{
-				wp_pagenavi(array( 'query' => $queryall));
+				wp_pagenavi();
 			}
         ?>
     </div>
